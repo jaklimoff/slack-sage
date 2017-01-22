@@ -24,5 +24,5 @@ class Channel(api.APIContext):
             self.type = ChannelTypes.DIRECT_MESSAGE
             return await self.api.groups.info(self.channel_id)
 
-    async def post_message(self, text):
-        return await self.api.chat.post_message(self.channel_id, text)
+    async def post_message(self, text="", **kwargs):
+        return await self.api.chat.post_message(self.channel_id, text, **kwargs)

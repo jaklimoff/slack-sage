@@ -73,21 +73,29 @@ class BaseHandler(metaclass=MetaHandler):
 
 class MessageHandler(BaseHandler):
     trigger_messages = [r".*"]  # Set here ytour trigger messages
+    exclude_commands = []  # Exclude this command
 
     message: Message = None
 
     @classmethod
     async def validate(cls, msg):
         is_message = msg.get('type') == "message" and msg.get('subtype') != 'bot_message'
-        matched = False
+        matched_trigger = False
+        matched_exclude_commands = False
 
         if is_message:
             msg_text = msg.get('text')
             for tm in cls.trigger_messages:
-                matched = re.match(tm, msg_text) is not None
-                if matched:
+                matched_trigger = re.match(tm, msg_text) is not None
+                if matched_trigger:
                     break
-        return is_message and matched
+
+            for tm in cls.exclude_commands:
+                matched_exclude_commands = re.match(tm, msg_text) is not None
+                if matched_exclude_commands:
+                    break
+
+        return is_message and (matched_trigger and not matched_exclude_commands)
 
     async def prepare(self):
         self.message = Message.parse(self.msg)

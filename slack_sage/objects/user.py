@@ -9,3 +9,4 @@ class SlackUser(api.APIContext):
     async def info(self):
         return await self.api.users.info(self.user_id)
 
+

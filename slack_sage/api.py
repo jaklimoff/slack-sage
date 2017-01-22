@@ -45,9 +45,10 @@ class Groups(APIMethod):
     async def info(self, group_id):
         return await self.api("groups.info", {'channel': group_id})
 
+
 class Chat(APIMethod):
-    async def post_message(self, channel, text):
-        return await self.api("chat.postMessage", {'text': text, 'channel': channel})
+    async def post_message(self, channel, text, **kwargs):
+        return await self.api("chat.postMessage", {'text': text, 'channel': channel, **kwargs})
 
 
 class SlackAPI:
