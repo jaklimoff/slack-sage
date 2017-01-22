@@ -7,11 +7,13 @@
  The main idea of this framework is in `Handlers` which works like plugins and can extended base functionality in any way you want. 
  
  
- ## [Examples](https://github.com/jaklimoff/slack-sage/tree/master/demo):
+## [Examples](https://github.com/jaklimoff/slack-sage/tree/master/demo):
+
  
- ### [News Bot](https://github.com/jaklimoff/slack-sage/blob/master/demo/news_bot.py):
- > Simple bot which gives you last post from reddit on `reddit` command
- ```python
+### [News Bot](https://github.com/jaklimoff/slack-sage/blob/master/demo/news_bot.py):
+> Simple bot which gives you last post from reddit on `reddit` command
+
+```python
  import asyncio
  import json
  import os
@@ -40,4 +42,4 @@
  loop.run_until_complete(bot.run())
  loop.close()
 
- ```
+```
