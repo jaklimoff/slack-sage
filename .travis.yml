@@ -1,5 +1,8 @@
+branches:
+  only:
+  - master
 language: python
 python:
   - "3.6"
 install: "python setup.py install"
-script: python -m unittest -v slack_sage.tests.messages
+script: python -m unittest discover -s slack_sage/tests -p "*.py"
