@@ -23,7 +23,7 @@ class SlackSage:
         async with aiohttp.ClientSession() as session:
             async with session.ws_connect(rtm["url"]) as ws:
                 async for msg in ws:
-                    assert msg.tp == aiohttp.MsgType.text
+                    assert msg.tp == aiohttp.WSMsgType.TEXT
                     message = json.loads(msg.data)
                     asyncio.ensure_future(self.handle(message))
 
