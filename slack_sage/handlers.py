@@ -75,7 +75,7 @@ class MessageHandler(BaseHandler):
     trigger_messages = [r".*"]  # Set here ytour trigger messages
     exclude_commands = []  # Exclude this command
 
-    message: Message = None
+    message = None  # type: Message
 
     @classmethod
     async def validate(cls, msg):
@@ -85,6 +85,7 @@ class MessageHandler(BaseHandler):
 
         if is_message:
             msg_text = msg.get('text')
+
             for tm in cls.trigger_messages:
                 matched_trigger = re.match(tm, msg_text) is not None
                 if matched_trigger:
